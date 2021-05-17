@@ -7,6 +7,9 @@ import Slider from './UdaciSlider'
 import Stepper from './UdaciStepper'
 import DateHeader from './DateHeader'
 
+import { Ionicons } from '@expo/vector-icons'
+import TextButton from './TextButton'
+
 function SubmitBtn({ onPress }) {
   return (
     <TouchableOpacity
@@ -66,9 +69,31 @@ export default class AddEntry extends Component {
     // save to DB
     // clear local noification
   }
+  reset = () => {
+    const key = timeToString()
 
+    // update redux
+    // route to home
+    // update DB
+
+  }
   render() {
     const metaInfo = getMetricMetaInfo()
+
+    if (this.props.alreadyLogged) {
+      return (
+        <View>
+          <Ionicons
+            name='ios-happy-outline'
+            size={100}
+          />
+          <Text>You've already logged today's info</Text>
+          <TextButton onPress={this.reset}>
+            Reset
+        </TextButton>
+        </View>
+      )
+    }
 
     return (
       <View>
