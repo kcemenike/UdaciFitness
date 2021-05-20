@@ -9,6 +9,11 @@ import AddEntry from './components/AddEntry'
 import Touchables from './components/Touchables'
 import FormTest from './components/FormTest'
 
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import reducer from './reducers'
+
 
 export default class App extends React.Component {
   state = {
@@ -16,10 +21,14 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <FormTest />
-        {/* <AddEntry /> */}
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View
+          style={styles.container}
+        >
+          {/* <FormTest /> */}
+          <AddEntry />
+        </View>
+      </Provider>
     )
   }
 }
